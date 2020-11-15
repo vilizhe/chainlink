@@ -38,8 +38,8 @@ type (
 
 // NewPeerstoreWrapper creates a new database-backed peerstore wrapper scoped to the given jobID
 // Multiple peerstore wrappers should not be instantiated with the same jobID
-func NewPeerstoreWrapper(ctx context.Context, db *gorm.DB, writeInterval time.Duration, jobID int32) (*Pstorewrapper, error) {
-	ctx, cancel := context.WithCancel(ctx)
+func NewPeerstoreWrapper(db *gorm.DB, writeInterval time.Duration, jobID int32) (*Pstorewrapper, error) {
+	ctx, cancel := context.WithCancel(context.Background())
 
 	return &Pstorewrapper{
 		utils.StartStopOnce{},
